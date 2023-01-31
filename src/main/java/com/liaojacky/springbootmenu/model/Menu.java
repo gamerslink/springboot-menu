@@ -1,12 +1,14 @@
 package com.liaojacky.springbootmenu.model;
 
+import com.liaojacky.springbootmenu.constant.MenuCategory;
+
 import java.util.Date;
 
 public class Menu {
 
    private Integer menuId;
    private String menuName;
-   private String category;
+   private MenuCategory category;
    private String imageUrl;
    private Integer price;
    private Integer stock;
@@ -30,11 +32,11 @@ public class Menu {
         this.menuName = menuName;
     }
 
-    public String getCategory() {
+    public MenuCategory getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(MenuCategory category) {
         this.category = category;
     }
 

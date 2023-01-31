@@ -1,5 +1,6 @@
 package com.liaojacky.springbootmenu.rowmapper;
 
+import com.liaojacky.springbootmenu.constant.MenuCategory;
 import com.liaojacky.springbootmenu.model.Menu;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -14,7 +15,9 @@ public class MenuRowMapper implements RowMapper<Menu> {
 
         menu.setMenuId(resultSet.getInt("menu_id"));
         menu.setMenuName(resultSet.getString("menu_name"));
-        menu.setCategory(resultSet.getString("category"));
+
+        menu.setCategory(MenuCategory.valueOf(resultSet.getString("category")));
+
         menu.setImageUrl(resultSet.getString("image_url"));
         menu.setPrice(resultSet.getInt("price"));
         menu.setStock(resultSet.getInt("stock"));
