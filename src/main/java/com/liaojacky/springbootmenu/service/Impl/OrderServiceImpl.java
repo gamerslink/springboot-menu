@@ -21,6 +21,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Integer createOrder(OrderRequest orderRequest) {
         return orderDao.createOrder(orderRequest);
+    }
 
+    @Override
+    public void updateOrder(Integer orderId, OrderRequest orderRequest) {
+       orderDao.updateOrder(orderId, orderRequest);
     }
 }

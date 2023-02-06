@@ -11,6 +11,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
+import javax.validation.constraints.NotNull;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,5 +52,19 @@ public class OrderDaoImpl implements OrderDao {
         int orderId = keyHolder.getKey().intValue();
 
         return orderId;
+    }
+
+    @Override
+    public void updateOrder(Integer orderId, OrderRequest orderRequest) {
+        String sql = "UPDATE `order` SET buyerName = :buyerName, orderAmount = :orderAmount WHERE orderId = :orderId";
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("orderId", orderId);
+
+        map.put("buyerName",orderRequest.getBuyerName());
+        map.put("orderAmount", orderRequest.getOrderAmount());
+
+        namedParameterJdbcTemplate.update(sql,map);
+
     }
 }
