@@ -1,10 +1,14 @@
 package com.liaojacky.springbootmenu.dao.Impl;
 
 import com.liaojacky.springbootmenu.dao.ProductDao;
+import com.liaojacky.springbootmenu.dto.ProductRequest;
 import com.liaojacky.springbootmenu.model.Product;
 import com.liaojacky.springbootmenu.rowmapper.ProductRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -38,5 +42,21 @@ public class ProductDaoImpl implements ProductDao {
         }
     }
 
+    @Override
+    public Integer createProduct(ProductRequest productRequest) { // 前端傳回的參數
+        String sql = "INSERT INTO product (productName, price, stock) VALUES (:productName, :price, :stock)";
 
+        Map<String, Object> map = new HashMap<>();
+        map.put("productName", productRequest.getProductName());
+        map.put("price", productRequest.getPrice());
+        map.put("stock", productRequest.getStock());
+
+        KeyHolder keyHolder = new GeneratedKeyHolder(); // 儲存資料庫自動生成的 productId
+
+        namedParameterJdbcTemplate.update(sql,new MapSqlParameterSource(map), keyHolder);
+
+        int productId = keyHolder.getKey().intValue();
+
+        return productId;
+    }
 }

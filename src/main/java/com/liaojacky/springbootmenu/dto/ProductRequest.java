@@ -1,22 +1,18 @@
-package com.liaojacky.springbootmenu.model;
-
-import javax.persistence.Entity;
+package com.liaojacky.springbootmenu.dto;
 
 
-public class Product {
+import javax.validation.constraints.NotNull;
 
-   private Integer productId;
-   private String productName;
-   private Integer price;
-   private Integer stock;
+public class ProductRequest {
 
-    public Integer getProductId() {
-        return productId;
-    }
+    @NotNull
+    private String productName;
 
-    public void setProductId(Integer productId) {
-        this.productId = productId;
-    }
+    @NotNull
+    private Integer price;
+
+    @NotNull
+    private Integer stock;
 
     public String getProductName() {
         return productName;
