@@ -39,8 +39,15 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order getOrderById(Integer orderId) {
-        return orderDao.getOrderById(orderId);
+        Order order = orderDao.getOrderById(orderId);
+
+        List<OrderItem> orderItemList = orderDao.getOrderItemByOrderById(orderId);
+
+        order.setOrderItemList(orderItemList);
+
+        return order;
     }
+
 
     // 萬一中間噴出Exception，會復原資料庫操作
     // 確保OrderDetail、order同時成功或是失敗,避免數據不一致的問題

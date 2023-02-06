@@ -7,6 +7,15 @@ public class OrderItem {
     private Integer quantity;
     private Integer amount;
 
+    private String productName;
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
 
     public Integer getOrderItemId() {
         return orderItemId;

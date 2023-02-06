@@ -10,6 +10,8 @@ public interface OrderDao {
 
     Order getOrderById(Integer orderId);
 
+    List<OrderItem> getOrderItemByOrderById(Integer orderId);
+
     Integer createOrder(Integer userId, Integer totalAmount);
 
     void createOrderListItems(Integer orderId, List<OrderItem> orderItemList);
