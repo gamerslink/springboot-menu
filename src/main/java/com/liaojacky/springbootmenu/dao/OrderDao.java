@@ -6,6 +6,10 @@ import com.liaojacky.springbootmenu.model.Order;
 public interface OrderDao {
 
     Order getOrderById(Integer orderId);
+
     Integer createOrder(OrderRequest orderRequest);
+
     void updateOrder(Integer orderId, OrderRequest orderRequest);
+
+    void deleteOrderById(Integer orderId);
 }

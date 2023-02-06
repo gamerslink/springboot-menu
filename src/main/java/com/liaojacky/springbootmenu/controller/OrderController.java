@@ -39,20 +39,26 @@ public class OrderController {
     public ResponseEntity<Order> updateOrder(@PathVariable Integer orderId,
                                              @RequestBody @Valid OrderRequest orderRequest
                                              ) {
-
-        // 檢查商品是否存在
+        // 檢查訂單是否存在
         Order order = orderService.getOrderById(orderId);
         if ( order == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
 
-
-        // 修改商品
+        // 修改訂單
         orderService.updateOrder(orderId, orderRequest); // 不會返回值
 
         Order updateOrder = orderService.getOrderById(orderId); // 查詢更新後的數據
 
         return ResponseEntity.status(HttpStatus.OK).body(updateOrder);
     }
+
+
+        @DeleteMapping("/orders/{orderId}")
+        public ResponseEntity<Order> deleteOrder(@PathVariable Integer orderId) {
+            orderService.deleteOrderById(orderId);
+
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }
 
 }

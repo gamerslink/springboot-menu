@@ -11,7 +11,6 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
-import javax.validation.constraints.NotNull;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -66,5 +65,15 @@ public class OrderDaoImpl implements OrderDao {
 
         namedParameterJdbcTemplate.update(sql,map);
 
+    }
+
+    @Override
+    public void deleteOrderById(Integer orderId) {
+        String sql = "DELETE FROM `order` WHERE orderId = :orderId";
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("orderId", orderId);
+
+        namedParameterJdbcTemplate.update(sql, map);
     }
 }
