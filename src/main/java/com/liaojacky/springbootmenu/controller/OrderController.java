@@ -1,5 +1,6 @@
 package com.liaojacky.springbootmenu.controller;
 
+import com.liaojacky.springbootmenu.dto.CreateOrderRequest;
 import com.liaojacky.springbootmenu.dto.OrderRequest;
 import com.liaojacky.springbootmenu.model.Order;
 import com.liaojacky.springbootmenu.service.OrderService;
@@ -16,6 +17,19 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
+
+    @PostMapping("/users/{userId}/orders")
+    public ResponseEntity<?> createOrder(
+            @PathVariable Integer userId,
+            @RequestBody @Valid CreateOrderRequest createOrderRequest){
+
+       Integer orderId = orderService.createOrder(userId, createOrderRequest); // 返回資料庫創建的ID
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(orderId);
+    }
+
+
+
     @GetMapping("/orders/{orderId}")
     public ResponseEntity<Order> getOrderById(@PathVariable Integer orderId){
         Order order = orderService.getOrderById(orderId);
@@ -27,15 +41,8 @@ public class OrderController {
         }
     }
 
-    @PostMapping("/orders")
-    public ResponseEntity<Order> createOrder(@RequestBody @Valid OrderRequest orderRequest) {
-        Integer orderId = orderService.createOrder(orderRequest);
-        Order order = orderService.getOrderById(orderId); // 查詢商品數據到order
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(order);
-    }
-
-    @PutMapping("/orders/{orderId}")
+    @PutMapping("/users/{userId}/orders")
     public ResponseEntity<Order> updateOrder(@PathVariable Integer orderId,
                                              @RequestBody @Valid OrderRequest orderRequest
                                              ) {

@@ -6,24 +6,24 @@ import javax.validation.constraints.NotNull;
 public class OrderRequest {
 
     @NotNull
-    private String buyerName;
+    private Integer userId;
 
     @NotNull
-    private Integer orderAmount;
+    private Integer totalAmount;
 
-    public String getBuyerName() {
-        return buyerName;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setBuyerName(String buyerName) {
-        this.buyerName = buyerName;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public Integer getOrderAmount() {
-        return orderAmount;
+    public Integer getTotalAmount() {
+        return totalAmount;
     }
 
-    public void setOrderAmount(Integer orderAmount) {
-        this.orderAmount = orderAmount;
+    public void setTotalAmount(Integer totalAmount) {
+        this.totalAmount = totalAmount;
     }
 }

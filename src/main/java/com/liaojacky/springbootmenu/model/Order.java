@@ -3,8 +3,9 @@ package com.liaojacky.springbootmenu.model;
 
 public class Order {
     private Integer orderId;
-    private String buyerName;
-    private Integer orderAmount;
+    private Integer userId;
+    private Integer totalAmount;
+
 
     public Integer getOrderId() {
         return orderId;
@@ -14,19 +15,19 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public String getBuyerName() {
-        return buyerName;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setBuyerName(String buyerName) {
-        this.buyerName = buyerName;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public Integer getOrderAmount() {
-        return orderAmount;
+    public Integer getTotalAmount() {
+        return totalAmount;
     }
 
-    public void setOrderAmount(Integer orderAmount) {
-        this.orderAmount = orderAmount;
+    public void setTotalAmount(Integer totalAmount) {
+        this.totalAmount = totalAmount;
     }
 }
