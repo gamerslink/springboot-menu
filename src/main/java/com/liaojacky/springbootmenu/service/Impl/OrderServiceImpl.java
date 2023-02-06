@@ -5,6 +5,7 @@ import com.liaojacky.springbootmenu.dao.ProductDao;
 import com.liaojacky.springbootmenu.dao.UserDao;
 import com.liaojacky.springbootmenu.dto.BuyItem;
 import com.liaojacky.springbootmenu.dto.CreateOrderRequest;
+import com.liaojacky.springbootmenu.dto.OrderQueryParams;
 import com.liaojacky.springbootmenu.dto.OrderRequest;
 import com.liaojacky.springbootmenu.model.Order;
 import com.liaojacky.springbootmenu.model.OrderItem;
@@ -36,6 +37,28 @@ public class OrderServiceImpl implements OrderService {
 
 
     private final static Logger log = LoggerFactory.getLogger(OrderServiceImpl.class);
+
+
+    @Override
+    public Integer countOrder(OrderQueryParams orderQueryParams) {
+        return orderDao.countOrder(orderQueryParams);
+    }
+
+    @Override
+    public List<Order> getOrders(OrderQueryParams orderQueryParams) {
+        List<Order> orderList = orderDao.getOrders(orderQueryParams);
+
+        for (Order order : orderList) {
+            List<OrderItem> orderItemList = orderDao.getOrderItemByOrderById(order.getOrderId());
+
+            order.setOrderItemList(orderItemList);
+        }
+
+        return orderList;
+    }
+
+
+
 
     @Override
     public Order getOrderById(Integer orderId) {

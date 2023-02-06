@@ -1,5 +1,6 @@
 package com.liaojacky.springbootmenu.dao;
 
+import com.liaojacky.springbootmenu.dto.OrderQueryParams;
 import com.liaojacky.springbootmenu.dto.OrderRequest;
 import com.liaojacky.springbootmenu.model.Order;
 import com.liaojacky.springbootmenu.model.OrderItem;
@@ -7,6 +8,11 @@ import com.liaojacky.springbootmenu.model.OrderItem;
 import java.util.List;
 
 public interface OrderDao {
+
+
+    Integer countOrder(OrderQueryParams orderQueryParams);
+
+    List<Order> getOrders(OrderQueryParams orderQueryParams);
 
     Order getOrderById(Integer orderId);
 
