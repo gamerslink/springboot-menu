@@ -1,7 +1,7 @@
 package com.liaojacky.springbootmenu.controller;
 
-import com.liaojacky.springbootmenu.model.Menu;
-import com.liaojacky.springbootmenu.service.MenuService;
+import com.liaojacky.springbootmenu.model.Product;
+import com.liaojacky.springbootmenu.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,19 +10,21 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class MenuController {
+public class ProductController {
     @Autowired
-    private MenuService menuService;
+    private ProductService productService;
 
-    @GetMapping("/menus/{menuId}")
-    public ResponseEntity<Menu> getMenu(@PathVariable Integer menuId) {
-        Menu menu = menuService.getMenuById(menuId);
+    @GetMapping("/products/{productId}")
+    public ResponseEntity<Product> getProduct(@PathVariable Integer productId) {
+        Product product = productService.getProductById(productId);
 
-        if (menu != null) {
-            return ResponseEntity.status(HttpStatus.OK).body(menu);
+        if (product != null) {
+            return ResponseEntity.status(HttpStatus.OK).body(product);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
+
+
 
 }
