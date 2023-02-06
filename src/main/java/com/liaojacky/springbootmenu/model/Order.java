@@ -3,7 +3,7 @@ package com.liaojacky.springbootmenu.model;
 
 public class Order {
     private Integer orderId;
-    private Integer buyerName;
+    private String buyerName;
     private Integer orderAmount;
 
     public Integer getOrderId() {
@@ -14,11 +14,11 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public Integer getBuyerName() {
+    public String getBuyerName() {
         return buyerName;
     }
 
-    public void setBuyerName(Integer buyerName) {
+    public void setBuyerName(String buyerName) {
         this.buyerName = buyerName;
     }
 

@@ -17,9 +17,8 @@ public class OrderDaoImpl implements OrderDao {
     @Autowired
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    @Override
     public Order getOrderById(Integer orderId) {
-        String sql = "SELECT orderId, buyerName, orderAmount," +
+        String sql = "SELECT orderId, buyerName, orderAmount " +
                 "FROM `order` WHERE orderId = :orderId";
 
         Map<String, Object> map = new HashMap<>();
@@ -31,4 +30,5 @@ public class OrderDaoImpl implements OrderDao {
         }
         return null;
     }
+
 }
